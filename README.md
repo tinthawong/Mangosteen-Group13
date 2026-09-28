@@ -53,7 +53,3 @@ platformio.ini      ตั้งค่าบอร์ดและไลบรา
 - เปลี่ยน `delay(2000)` เป็นการจับเวลาแบบไม่บล็อก ทำให้ DNS/captive portal ตอบสนองดีขึ้น
 - แสดงเวลา inference บนหน้าเว็บและ Serial Monitor
 - ลบ `#define CAM_RESET_PIN` ที่ซ้ำกันใน `config.h`
-
-## เครดิต
-
-ต่อยอดจากโปรเจกต์ [Mangosteen3.1](https://github.com/BallThirakun/Mangosteen3.1) ซึ่งพัฒนาร่วมกับกลุ่มของ BallThirakun
