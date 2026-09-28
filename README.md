@@ -16,9 +16,12 @@
 
 ## โมเดล
 
-- CNN ขนาดเล็กแบบ depthwise separable เทรนด้วย TensorFlow/Keras บน Google Colab
+- CNN ขนาดเล็ก 4 ชั้น (Conv16 → Conv32 → Conv48 → Conv64 + MaxPool) → Global Average Pooling → Dense(3)
+- เทรนด้วย TensorFlow/Keras บน Google Colab ใช้ class weight เพราะจำนวนรูปแต่ละคลาสไม่เท่ากัน
+- Dataset 312 รูป (overripe 21, ripe 117, unripe 174) แบ่ง train/val/test = 218/47/47
 - Input 96×96×3, output 3 คลาส (overripe, ripe, unripe)
-- Quantize เป็น int8 เต็มรูปแบบ ขนาด 43,576 bytes, 21,571 พารามิเตอร์
+- Quantize เป็น int8 เต็มรูปแบบ: 46,867 พารามิเตอร์, ขนาด 56,184 bytes
+- Test accuracy 70.2% (Float32 และ INT8 เท่ากัน)
 
 ## การทำงาน
 
