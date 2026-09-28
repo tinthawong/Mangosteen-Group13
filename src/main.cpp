@@ -326,10 +326,12 @@ void runAIInference()
 #else
       uint8_t r = p[0], g = p[1], b = p[2];
 #endif
-      // normalize เป็น -1.0 ถึง 1.0 ให้ตรงกับตอนเทรนใน Colab
-      float nr = ((float)r - 127.5f) / 127.5f;
-      float ng = ((float)g - 127.5f) / 127.5f;
-      float nb = ((float)b - 127.5f) / 127.5f;
+      // normalize เป็น 0.0 ถึง 1.0 (pixel / 255)
+      // ตรงกับค่า quantization ของ input tensor ในโมเดล (scale = 1/255, zero_point = -128)
+      // หมายเหตุ: เวอร์ชันเดิม normalize เป็น -1..1 ซึ่งไม่ตรงกับโมเดล ทำให้ค่าเกินช่วงและถูกตัดทิ้ง
+      float nr = (float)r / 255.0f;
+      float ng = (float)g / 255.0f;
+      float nb = (float)b / 255.0f;
 
       input_buffer[idx++] = (int8_t)constrain(lroundf(nr / input_scale) + input_zero_point, -128, 127);
       input_buffer[idx++] = (int8_t)constrain(lroundf(ng / input_scale) + input_zero_point, -128, 127);
